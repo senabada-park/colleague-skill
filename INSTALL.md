@@ -6,16 +6,15 @@
 
 ### A. Claude Code（推荐）
 
-把 `colleague-creator` 目录复制到你的项目或全局 Claude 目录：
+本项目遵循官方 [AgentSkills](https://agentskills.io) 标准，整个 repo 就是 skill 目录。克隆到 Claude skills 目录即可：
 
 ```bash
 # 方式 1：放到当前项目的 .claude/skills/ 目录下
 mkdir -p .claude/skills
-cp -r colleague-creator .claude/skills/
+git clone https://github.com/titanwings/colleague-skill .claude/skills/colleague-creator
 
 # 方式 2：放到全局目录，所有项目都能用
-mkdir -p ~/.claude/skills
-cp -r colleague-creator ~/.claude/skills/
+git clone https://github.com/titanwings/colleague-skill ~/.claude/skills/colleague-creator
 ```
 
 然后在 Claude Code 中说 `/create-colleague` 即可启动。
@@ -27,9 +26,8 @@ cp -r colleague-creator ~/.claude/skills/
 ### B. OpenClaw
 
 ```bash
-# 复制到 OpenClaw 的 skills 目录
-cp -r colleague-creator ~/.openclaw/workspace/skills/
-cp -r colleagues ~/.openclaw/workspace/skills/
+# 克隆到 OpenClaw 的 skills 目录
+git clone https://github.com/titanwings/colleague-skill ~/.openclaw/workspace/skills/colleague-creator
 ```
 
 重启 OpenClaw session，说 `/create-colleague` 启动。
@@ -66,25 +64,25 @@ pip3 install openpyxl        # Excel .xlsx 转 CSV
 
 **飞书自动采集初始化**：
 ```bash
-python3 colleague-creator/tools/feishu_auto_collector.py --setup
+python3 tools/feishu_auto_collector.py --setup
 # 输入飞书开放平台的 App ID 和 App Secret
 ```
 
 **钉钉自动采集初始化**：
 ```bash
-python3 colleague-creator/tools/dingtalk_auto_collector.py --setup
+python3 tools/dingtalk_auto_collector.py --setup
 # 输入钉钉开放平台的 AppKey 和 AppSecret
 # 首次运行加 --show-browser 参数以完成钉钉登录
 ```
 
 **飞书 MCP 初始化**（手动指定链接时使用）：
 ```bash
-python3 colleague-creator/tools/feishu_mcp_client.py --setup
+python3 tools/feishu_mcp_client.py --setup
 ```
 
 **飞书浏览器方案**（首次使用会弹窗登录，之后自动复用登录态）：
 ```bash
-python3 colleague-creator/tools/feishu_browser.py \
+python3 tools/feishu_browser.py \
   --url "https://xxx.feishu.cn/wiki/xxx" \
   --show-browser    # 首次使用加这个参数，登录后不再需要
 ```
@@ -94,29 +92,32 @@ python3 colleague-creator/tools/feishu_browser.py \
 ## 快速验证
 
 ```bash
+cd ~/.claude/skills/colleague-creator   # 或你的项目 .claude/skills/colleague-creator
+
 # 测试飞书解析器
-python3 colleague-creator/tools/feishu_parser.py --help
+python3 tools/feishu_parser.py --help
 
 # 测试邮件解析器
-python3 colleague-creator/tools/email_parser.py --help
+python3 tools/email_parser.py --help
 
 # 列出已有同事 Skill
-python3 colleague-creator/tools/skill_writer.py --action list --base-dir ./colleagues
+python3 tools/skill_writer.py --action list --base-dir ./colleagues
 ```
 
 ---
 
 ## 目录结构说明
 
+本项目整个 repo 就是一个 skill 目录（AgentSkills 标准格式）：
+
 ```
-colleague-skill/
-├── colleague-creator/          # 创建器（复制到 skills 目录）
-│   ├── SKILL.md                # OpenClaw 入口
-│   ├── SKILL_claude_code.md    # Claude Code 入口
-│   ├── prompts/                # 分析和生成的 Prompt 模板
-│   └── tools/                  # Python 工具脚本
+colleague-skill/        ← clone 到 .claude/skills/colleague-creator/
+├── SKILL.md            # skill 入口（官方 frontmatter）
+├── prompts/            # 分析和生成的 Prompt 模板
+├── tools/              # Python 工具脚本
+├── docs/               # 文档（PRD 等）
 │
-└── colleagues/                 # 生成的同事 Skill 存放处
+└── colleagues/         # 生成的同事 Skill 存放处（.gitignore 排除）
     └── {slug}/
         ├── SKILL.md            # 完整 Skill（Persona + Work）
         ├── work.md             # 仅工作能力

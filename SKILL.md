@@ -1,6 +1,10 @@
 ---
-name: colleague_creator
-description: 创建同事的 Persona + Work Skill，支持 PDF/飞书/邮件导入和持续进化
+name: colleague-creator
+description: 把同事蒸馏成 AI Skill。输入姓名自动采集飞书/钉钉数据，生成 Work Skill + Persona 两部分，支持持续进化。
+argument-hint: "[colleague-name-or-slug]"
+version: "1.0.0"
+user-invocable: true
+allowed-tools: Read, Write, Edit, Bash
 ---
 
 # 同事.skill 创建器（Claude Code 版）

@@ -115,31 +115,28 @@ PART B — Persona（他是什么人）
 
 ### 安装
 
-**Claude Code：**
+**Claude Code（官方 skill 格式）：**
 
 ```bash
-git clone https://github.com/your-username/colleague-skill
-cd colleague-skill
-
 # 放到当前项目
 mkdir -p .claude/skills
-cp -r colleague-creator .claude/skills/
+git clone https://github.com/titanwings/colleague-skill .claude/skills/colleague-creator
 
-# 或放到全局
-cp -r colleague-creator ~/.claude/skills/
+# 或放到全局（所有项目可用）
+git clone https://github.com/titanwings/colleague-skill ~/.claude/skills/colleague-creator
 ```
 
 **OpenClaw：**
 
 ```bash
-cp -r colleague-creator ~/.openclaw/workspace/skills/
-cp -r colleagues ~/.openclaw/workspace/skills/
+git clone https://github.com/titanwings/colleague-skill
+cp -r colleague-skill ~/.openclaw/workspace/skills/colleague-creator
 ```
 
 **依赖（可选）：**
 
 ```bash
-pip3 install pypinyin   # 中文姓名转拼音 slug
+pip3 install -r requirements.txt
 ```
 
 ### 创建第一个同事 Skill
@@ -173,32 +170,36 @@ pip3 install pypinyin   # 中文姓名转拼音 slug
 
 ## 项目结构
 
+本项目遵循 [AgentSkills](https://agentskills.io) 开放标准，整个 repo 就是一个 Claude Code skill 目录：
+
 ```
-colleague-skill/
+colleague-skill/        ← 整个 repo 是一个 skill 目录
 │
-├── colleague-creator/              # Meta-skill：同事创建器
-│   ├── SKILL.md                    # OpenClaw 入口
-│   ├── SKILL_claude_code.md        # Claude Code 入口
-│   ├── prompts/
-│   │   ├── intake.md               # 对话式信息录入
-│   │   ├── work_analyzer.md        # 工作能力提取（按职位分路）
-│   │   ├── persona_analyzer.md     # 性格行为提取（含标签翻译表）
-│   │   ├── work_builder.md         # work.md 生成模板
-│   │   ├── persona_builder.md      # persona.md 五层结构模板
-│   │   ├── merger.md               # 增量 merge 逻辑
-│   │   └── correction_handler.md   # 对话纠正处理
-│   └── tools/
-│       ├── feishu_parser.py        # 飞书消息解析
-│       ├── email_parser.py         # 邮件解析（eml/mbox/txt）
-│       ├── skill_writer.py         # Skill 文件写入与管理
-│       └── version_manager.py      # 版本存档与回滚
-│
-└── colleagues/                     # 生成的同事 Skill（示例）
-    └── example_zhangsan/
-        ├── SKILL.md
-        ├── work.md
-        ├── persona.md
-        └── meta.json
+├── SKILL.md            ← skill 入口（含官方 frontmatter）
+├── prompts/            ← 分析和生成的 Prompt 模板
+│   ├── intake.md               # 对话式信息录入
+│   ├── work_analyzer.md        # 工作能力提取（按职位分路）
+│   ├── persona_analyzer.md     # 性格行为提取（含标签翻译表）
+│   ├── work_builder.md         # work.md 生成模板
+│   ├── persona_builder.md      # persona.md 五层结构模板
+│   ├── merger.md               # 增量 merge 逻辑
+│   └── correction_handler.md   # 对话纠正处理
+├── tools/              ← Python 工具脚本
+│   ├── feishu_auto_collector.py   # 飞书全自动采集
+│   ├── feishu_browser.py          # 飞书浏览器方案（内部文档）
+│   ├── feishu_mcp_client.py       # 飞书 MCP 方案
+│   ├── feishu_parser.py           # 飞书导出 JSON 解析
+│   ├── dingtalk_auto_collector.py # 钉钉全自动采集
+│   ├── email_parser.py            # 邮件解析（eml/mbox/txt）
+│   ├── skill_writer.py            # Skill 文件写入与管理
+│   └── version_manager.py         # 版本存档与回滚
+├── colleagues/         ← 生成的同事 Skill（.gitignore 排除，示例除外）
+│   └── example_zhangsan/
+├── docs/
+│   └── PRD.md
+├── requirements.txt
+├── LICENSE
+└── README.md
 ```
 
 ---
