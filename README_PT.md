@@ -8,6 +8,7 @@
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://python.org)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://claude.ai/code)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-green)](https://agentskills.io)
+
 [![Discord](https://img.shields.io/badge/Discord-Join%20Community-5865F2?logo=discord&logoColor=white)](https://discord.gg/aRjmJBdK)
 
 <br>
@@ -26,7 +27,7 @@ Forneça materiais fonte (mensagens do Slack, docs do Confluence, emails, screen
 mais a sua descrição subjetiva da pessoa<br>
 e receba um **AI Skill que realmente trabalha como ela**
 
-[Fontes de dados](#fontes-de-dados-suportadas) · [Instalação](#instalação) · [Uso](#uso) · [Demo](#demo) · [Instalação detalhada](INSTALL.md) · [**中文**](README_ZH.md) · [**English**](README.md)
+[Fontes de dados](#fontes-de-dados-suportadas) · [Instalação](#instalação) · [Uso](#uso) · [Demo](#demo) · [Instalação detalhada](INSTALL.md) · [**中文**](README_ZH.md) · [**English**](README.md) · [💬 Discord](https://discord.gg/aRjmJBdK)
 
 </div>
 
@@ -36,7 +37,7 @@ e receba um **AI Skill que realmente trabalha como ela**
 >
 > Compartilhe qualquer skill ou meta-skill e direcione tráfego diretamente para seu próprio repo do GitHub. Sem intermediários.
 >
-> 👉 **[titanwings.github.io/colleague-skill-site](https://titanwings.github.io/colleague-skill-site/)**
+> 👉 **[titanwings.github.io/colleague-skill-site](https://titanwings.github.io/colleague-skill-site/)** · **[💬 Discord](https://discord.gg/aRjmJBdK)**
 >
 > Já listados: 户晨风.skill · 峰哥亡命天涯.skill · 罗翔.skill e mais
 >
